@@ -22,14 +22,14 @@
     "typescript": "*"
   },
   "scripts": {
-    "test": "jest",
-    "test:staged": "jest",
+    "test": "jest --passWithNoTests",
+    "test:staged": "jest --passWithNoTests",
     "lint": "eslint ./src/**"
   },
   "dependencies": {
     "npm-check": "^6.0.1"
   },
   "lint-staged": {
-    "*": "your-cmd"
+    "*.ts": "eslint 'src/**' --fix"
   }
 }
