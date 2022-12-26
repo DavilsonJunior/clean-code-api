@@ -22,14 +22,22 @@
     "typescript": "*"
   },
   "scripts": {
-    "test": "jest --passWithNoTests",
+    "test": "jest --passWithNoTests watch",
     "test:staged": "jest --passWithNoTests",
     "lint": "eslint ./src/**"
   },
   "dependencies": {
     "npm-check": "^6.0.1"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "echo test"
+    }
+  },
   "lint-staged": {
-    "*.ts": "eslint 'src/**' --fix"
+    "*.ts": [
+      "eslint --fix",
+      "npm run test:staged"
+    ]
   }
 }
