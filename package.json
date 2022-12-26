@@ -22,7 +22,7 @@
     "typescript": "*"
   },
   "scripts": {
-    "test": "jest --passWithNoTests watch",
+    "test": "jest --passWithNoTests",
     "test:staged": "jest --passWithNoTests",
     "lint": "eslint ./src/**"
   },
