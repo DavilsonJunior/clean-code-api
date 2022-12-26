@@ -24,20 +24,11 @@
   "scripts": {
     "test": "jest --passWithNoTests",
     "test:staged": "jest --passWithNoTests",
-    "lint": "eslint ./src/**"
+    "lint": "eslint ./src/**",
+    "prepare": "husky install"
   },
   "dependencies": {
+    "eslint-plugin-prettier": "^4.2.1",
     "npm-check": "^6.0.1"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
-  "lint-staged": {
-    "*.ts": [
-      "eslint --fix",
-      "npm run test:staged"
-    ]
   }
 }
