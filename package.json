@@ -22,7 +22,7 @@
     "typescript": "*"
   },
   "scripts": {
-    "test": "jest --passWithNoTests",
+    "test": "jest --passWithNoTests --watch-all",
     "test:staged": "jest --passWithNoTests",
     "lint": "eslint ./src/**",
     "prepare": "husky install"
