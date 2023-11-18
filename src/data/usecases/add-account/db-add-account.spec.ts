@@ -1,7 +1,5 @@
-import { resolve } from 'path'
-import { Encrypter } from '../../protocols/encrypter'
 import { DbAddAccount } from './db-add-account'
-import { rejects } from 'assert'
+import { Encrypter } from './db-add-account-protocols'
 
 interface SutTypes {
   sut: DbAddAccount
