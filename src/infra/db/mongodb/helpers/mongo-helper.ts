@@ -1,7 +1,7 @@
-import { Collection, MongoClient, DataKey, UUID } from 'mongodb'
+import { Collection, MongoClient } from 'mongodb'
 
 export interface MongoID {
-  _id: string
+  id: string
 }
 
 export const MongoHelper = {
@@ -9,10 +9,6 @@ export const MongoHelper = {
   uri: null as string,
 
   async connect (uri: string): Promise<void> {
-    // this.client = await MongoClient.connect(uri, {
-    //   useNewUrlParser: true,
-    //   useUnifiedTopology: true
-    // })
     this.uri = uri
     this.client = await MongoClient.connect(uri)
   },
@@ -26,11 +22,8 @@ export const MongoHelper = {
     return this.client.db().collection(name)
   },
 
-  // map ({ id, ...accountData }: AccountModel): AccountModel {
-  //   return Object.assign({}, accountData, { id })
-  // }
-  map<T extends MongoID>({ _id, ...collectionData }: T): Omit<T, '_id'> & { id: string } {
-    const mappedData = Object.assign({}, collectionData, { id: _id }) as Omit<T, '_id'> & { id: string }
-    return mappedData
+  map<T extends MongoID>({ id, ...collectionData }: T): T {
+    const mappedData = Object.assign({}, collectionData, { id })
+    return mappedData as T
   }
 }
