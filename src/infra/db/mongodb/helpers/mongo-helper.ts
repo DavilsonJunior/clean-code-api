@@ -1,4 +1,8 @@
-import { Collection, MongoClient } from 'mongodb'
+import { Collection, MongoClient, DataKey, UUID } from 'mongodb'
+
+export interface MongoID {
+  _id: string
+}
 
 export const MongoHelper = {
   client: null as MongoClient,
@@ -20,5 +24,13 @@ export const MongoHelper = {
 
   getCollection (name: string): Collection {
     return this.client.db().collection(name)
+  },
+
+  // map ({ id, ...accountData }: AccountModel): AccountModel {
+  //   return Object.assign({}, accountData, { id })
+  // }
+  map<T extends MongoID>({ _id, ...collectionData }: T): Omit<T, '_id'> & { id: string } {
+    const mappedData = Object.assign({}, collectionData, { id: _id }) as Omit<T, '_id'> & { id: string }
+    return mappedData
   }
 }
